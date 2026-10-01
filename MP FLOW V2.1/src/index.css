@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cor-vermelho: #C9031A;
+  --cor-vinho: #9D1722;
+  --cor-cacau: #4A2723;
+  --cor-marinho: #1B3F73;
+  --cor-turquesa: #07A2A6;
+  --cor-creme: #FFECCB;
+  --glass-bg: rgba(255, 250, 241, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 8px 32px rgba(74, 39, 35, 0.10);
+}
+
+* {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #fff6e6 0%, #ffecca 40%, #f8dfc0 75%, #fff3de 100%);
+  background-attachment: fixed;
+  color: #4A2723;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animated gradient orbs for depth */
+.bg-orbs::before,
+.bg-orbs::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-orbs::before {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(47, 90, 154, 0.20), transparent 70%);
+  top: -150px;
+  left: -100px;
+  animation: float1 20s ease-in-out infinite;
+}
+
+.bg-orbs::after {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(7, 162, 166, 0.16), transparent 70%);
+  bottom: -120px;
+  right: -80px;
+  animation: float2 25s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, 60px) scale(1.1); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, -40px) scale(1.05); }
+}
+
+/* Glass panels */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(27, 63, 115, 0.30);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 63, 115, 0.50);
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Slide animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Status badge colors */
+.badge-success {
+  background: rgba(7, 162, 166, 0.15);
+  color: #056a6d;
+}
+.badge-warning {
+  background: rgba(217, 176, 104, 0.25);
+  color: #8a5a12;
+}
+.badge-danger {
+  background: rgba(201, 3, 26, 0.12);
+  color: #9d1722;
+}
+.badge-info {
+  background: rgba(27, 63, 115, 0.12);
+  color: #1b3f73;
+}
+.badge-neutral {
+  background: rgba(74, 39, 35, 0.10);
+  color: #664842;
+}
+
+/* ===== Retoques visuais (CSS puro, aplicado em src e dist) ===== */
+::selection { background: rgba(47, 90, 154, 0.25); color: #4a2723; }
+
+body {
+  background:
+    radial-gradient(900px 500px at 8% -5%, rgba(47, 90, 154, 0.16), transparent 60%),
+    radial-gradient(800px 500px at 100% 105%, rgba(7, 162, 166, 0.18), transparent 60%),
+    linear-gradient(135deg, #fff6e6 0%, #ffecca 40%, #f8dfc0 75%, #fff3de 100%);
+  background-attachment: fixed;
+}
+
+/* Vidro com brilho de borda superior e transição suave */
+.glass, .glass-strong {
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+.glass-strong { box-shadow: 0 8px 32px rgba(74, 39, 35, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9); }
+.glass-strong:hover { box-shadow: 0 14px 40px rgba(74, 39, 35, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95); }
+
+/* Entrada do card de login */
+.bg-orbs > form { animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Botões: resposta ao toque/hover e foco visível (acessibilidade) */
+button { transition: transform 0.15s ease, box-shadow 0.25s ease, filter 0.25s ease, background-color 0.2s ease, color 0.2s ease; }
+button:not(:disabled):active { transform: translateY(1px) scale(0.99); }
+button[class*="bg-gradient"]:not(:disabled):hover {
+  filter: brightness(1.05) saturate(1.05);
+  box-shadow: 0 12px 26px -10px rgba(20, 50, 96, 0.65);
+}
+button:disabled { cursor: not-allowed; }
+button:focus-visible, a:focus-visible {
+  outline: 2px solid rgba(7, 162, 166, 0.85);
+  outline-offset: 2px;
+}
+
+/* Campos de formulário */
+input, select, textarea { transition: background-color 0.2s ease, box-shadow 0.2s ease; }
+input.glass-subtle:focus, select.glass-subtle:focus, textarea.glass-subtle:focus {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 4px rgba(7, 162, 166, 0.18);
+}
+
+/* Tabelas: números alinhados, cabeçalho mais nítido, linhas com destaque ao passar o mouse */
+table { font-variant-numeric: tabular-nums; }
+thead th { letter-spacing: 0.06em; }
+tbody tr:hover { background: rgba(255, 255, 255, 0.55); }
+
+/* Selos de status com contorno suave */
+.badge-success { box-shadow: inset 0 0 0 1px rgba(7, 162, 166, 0.30); }
+.badge-warning { box-shadow: inset 0 0 0 1px rgba(217, 176, 104, 0.45); }
+.badge-danger  { box-shadow: inset 0 0 0 1px rgba(201, 3, 26, 0.28); }
+.badge-info    { box-shadow: inset 0 0 0 1px rgba(27, 63, 115, 0.28); }
+.badge-neutral { box-shadow: inset 0 0 0 1px rgba(74, 39, 35, 0.22); }
+
+/* Scrollbar um pouco mais presente */
+::-webkit-scrollbar-thumb { background: rgba(27, 63, 115, 0.40); }
+::-webkit-scrollbar-thumb:hover { background: rgba(27, 63, 115, 0.65); }
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== Responsividade (celular e tablet) ===== */
+html, body { overflow-x: hidden; }
+img, video, canvas, svg { max-width: 100%; }
+@media (max-width: 640px) {
+  input, select, textarea { font-size: 16px; } /* evita zoom automático no iOS */
+  .bg-orbs::before, .bg-orbs::after { width: 280px; height: 280px; }
+  button { min-height: 40px; }
+}
+
+/* ===== V2.1: AeroGlass na barra lateral ===== */
+.aero-nav { scrollbar-width: none; }
+.aero-nav::-webkit-scrollbar { display: none; }
+
+.aero-item {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.aero-item:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.25));
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 16px -10px rgba(20, 50, 96, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.aero-item-active {
+  color: #143260;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.60) 49%, rgba(205, 222, 245, 0.55) 50%, rgba(255, 255, 255, 0.75) 100%);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px -10px rgba(20, 50, 96, 0.55), inset 0 1px 0 #fff, inset 0 -1px 0 rgba(27, 63, 115, 0.08);
+}
+.aero-item-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22%;
+  bottom: 22%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #5a80b8, #1b3f73);
+}
+.aero-icon { flex-shrink: 0; width: 18px; height: 18px; }
+.aero-label { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: left; line-height: 1.25; }
+.aero-badge {
+  flex-shrink: 0;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.aero-badge-idle {
+  color: #143260;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(205, 222, 245, 0.6));
+  box-shadow: inset 0 0 0 1px rgba(27, 63, 115, 0.18), inset 0 1px 0 #fff;
+}
+.aero-badge-on {
+  color: #fff;
+  background: linear-gradient(180deg, #2f5a9a, #143260);
+  box-shadow: 0 4px 10px -4px rgba(20, 50, 96, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Assinatura discreta da marca (canto da página) */
+.brand-credit { opacity: 0.55; transition: opacity 0.25s ease; }
+.brand-credit:hover { opacity: 0.95; }
